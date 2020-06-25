@@ -3,6 +3,11 @@
 date_default_timezone_set('America/Sao_Paulo');
 setlocale(LC_ALL, 'pt_BR','PT_BR.iso-8859-1', 'PT_BR.utf-8', 'portuguese');
 
+// Exibe todos os erros PHP (see changelog)
+// ini_set('display_errors',1);
+// ini_set('display_startup_erros',1);
+// error_reporting(E_ALL);
+
 // Pastas
 define('MODEL_PATH', realpath(dirname(__FILE__) . '/../models'));
 define('VIEW_PATH', realpath(dirname(__FILE__) . '/../views'));
