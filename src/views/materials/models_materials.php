@@ -67,23 +67,21 @@
     <?php endforeach?>
     </tbody>
 </table>
-<?php if(count($modelsMaterials['models']) > 10): ?>
 <nav aria-label="Navegação de página exemplo">
     <ul class="pagination justify-content-center">
-        <li class="<?= $currentPage == 1 ? 'page-item disabled' : 'page-item'; ?>">
-            <a class="page-link" href="?page=<?= $currentPage-1; ?>">Anterior</a>
+        <li class="<?= $modelsMaterials['currentPage'] == 1 ? 'page-item disabled' : 'page-item'; ?>">
+            <a class="page-link" href="?page=<?= $modelsMaterials['currentPage']-1; ?>">Anterior</a>
         </li>
-        <?php for($q = 0; $q < $pageCount; $q++): ?>
-            <li class="<?= $currentPage == ($q+1) ? 'page-item active' : 'page-item'; ?>">
+        <?php for($q = 0; $q < $modelsMaterials['pageCount']; $q++): ?>
+            <li class="<?= $modelsMaterials['currentPage'] == ($q+1) ? 'page-item active' : 'page-item'; ?>">
             <a class="page-link" href="?page=<?= $q+1; ?>"><?= $q+1; ?></a>
             </li>
         <?php endfor; ?>
-        <li class="<?= $currentPage == $pageCount ? 'page-item disabled' : 'page-item' ?>">
-            <a class="page-link" href="?page=<?= $currentPage+1; ?>">Próximo</a>
+        <li class="<?= $modelsMaterials['currentPage'] == $modelsMaterials['pageCount'] ? 'page-item disabled' : 'page-item' ?>">
+            <a class="page-link" href="?page=<?= $modelsMaterials['currentPage']+1; ?>">Próximo</a>
         </li>
     </ul>
 </nav>
-<?php endif; ?>
 </main>
 <script>
     // Insere na url o termo de busca e faz o reload da página para o mesmo ser lido pelo controller

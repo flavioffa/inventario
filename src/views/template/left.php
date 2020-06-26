@@ -47,6 +47,10 @@
                         <i class="icofont-layers"></i>
                         Modelo
                     </a>
+                    <a class="dropdown-item" href="manufacturers.php?page=1">
+                    <i class="icofont-industries-5"></i>
+                        Fabricante
+                    </a>
                 </div>
             </li>            
             <li class="nav-item">
