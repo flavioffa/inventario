@@ -3,7 +3,7 @@
         renderTitle(
             'Setor',
             'Crie e atualize o Setor',
-            'icofont-ui-home'
+            'icofont-cubes'
         );
 
         include(TEMPLATE_PATH . "/messages.php");

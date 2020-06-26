@@ -3,7 +3,7 @@
         renderTitle(
             'Divisão',
             'Crie e atualize a Divisão',
-            'icofont-ui-home'
+            'icofont-cube'
         );
 
         include(TEMPLATE_PATH . "/messages.php");

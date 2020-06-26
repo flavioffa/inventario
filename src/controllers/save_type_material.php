@@ -29,6 +29,6 @@ if(count($_POST) === 0 && isset($_GET['update'])) {
     }
 }
 
-loadTemplateView('materials/save_type_material', $typeData + [
+loadTemplateView('materials/save_type', $typeData + [
     'exception' => $exception
 ]);

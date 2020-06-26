@@ -3,7 +3,7 @@
         renderTitle(
             'Divisões',
             $msgTitle,
-            'icofont-ui-home'
+            'icofont-cube'
         );
 
         include(TEMPLATE_PATH . "/messages.php");

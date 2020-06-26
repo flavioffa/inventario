@@ -2,8 +2,8 @@
     <?php
         renderTitle(
             'Dashboard',
-            'Mantenha tudo atualizado!',
-            'icofont-chart-flow-1'
+            'Mantenha o controle do seu material carga!',
+            'icofont-dashboard-web'
         );
     ?>
 </main>

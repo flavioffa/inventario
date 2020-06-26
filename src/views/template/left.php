@@ -3,7 +3,7 @@
         <ul class="nav-list  flex-column">
             <li class="nav-item">
                 <a href="home.php">
-                    <i class="icofont-chart-flow-1 mr-2"></i>
+                <i class="icofont-dashboard-web mr-2"></i>
                     Home
                 </a>
             </li>
@@ -34,14 +34,18 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" data-target="#menuMaterials">
-                    <i class="icofont-box"></i>
+                    <i class="icofont-box mr-2"></i>
                     Materiais
                     <i class="icofont-simple-down"></i>
                 </a>
                 <div class="collapse" id="menuMaterials">
                     <a class="dropdown-item" href="types_materials.php">
-                    <i class="icofont-listing-box"></i>
+                        <i class="icofont-file-psb"></i>
                         Tipo
+                    </a>
+                    <a class="dropdown-item" href="models_materials.php?page=1">
+                        <i class="icofont-layers"></i>
+                        Modelo
                     </a>
                 </div>
             </li>            

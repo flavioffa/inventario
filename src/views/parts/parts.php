@@ -3,7 +3,7 @@
         renderTitle(
             $unit_initials,
             $msgTitle,
-            'icofont-ui-home'
+            'icofont-cubes'
         );
 
         include(TEMPLATE_PATH . "/messages.php");
