@@ -13,7 +13,7 @@
 <form class="form-login" action="#" method="post">
         <div class="login-card card">
             <div class="card-header">
-                <i class="icofont-cubes"></i>
+                <i class="icofont-box"></i>
                 <i class="icofont-login"></i>
                 <span class="font-weight-bold mx-2">Inventário</span>
                 <!-- <i class="icofont-ssl-security"></i> -->

@@ -14,7 +14,7 @@
 <body>
     <header class="header">
         <div class="logo">
-            <i class="icofont-cubes"></i>
+            <i class="icofont-box"></i>
             <i class="icofont-login icofont-sm"></i>
             <span class="font-weight-medium mx-2">Inventário</span>
             <i class="icofont-exit icofont-sm"></i>

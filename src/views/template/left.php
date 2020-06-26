@@ -33,15 +33,15 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" data-target="#menuScales">
-                    <i class="icofont-cube mr-2"></i>
-                    Material
+                <a class="nav-link" data-toggle="collapse" data-target="#menuMaterials">
+                    <i class="icofont-box"></i>
+                    Materiais
                     <i class="icofont-simple-down"></i>
                 </a>
-                <div class="collapse" id="menuScales">
-                    <a class="dropdown-item" href="units.php?divisions=true&parts=true&scales=true">
-                        <i class="icofont-ui-add"></i>
-                        Criar Nova
+                <div class="collapse" id="menuMaterials">
+                    <a class="dropdown-item" href="types_materials.php">
+                    <i class="icofont-listing-box"></i>
+                        Tipo
                     </a>
                 </div>
             </li>            

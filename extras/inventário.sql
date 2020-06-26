@@ -104,9 +104,9 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `inventario`.`type_material`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `inventario`.`type_material` ;
+DROP TABLE IF EXISTS `inventario`.`types_materials` ;
 
-CREATE TABLE IF NOT EXISTS `inventario`.`type_material` (
+CREATE TABLE IF NOT EXISTS `inventario`.`types_materials` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name_type` VARCHAR(200) NOT NULL,
   PRIMARY KEY (`id`))
@@ -126,7 +126,7 @@ CREATE TABLE IF NOT EXISTS `inventario`.`model_material` (
   INDEX `type_material_id_idx` (`type_id` ASC) VISIBLE,
   CONSTRAINT `type_id`
     FOREIGN KEY (`type_id`)
-    REFERENCES `inventario`.`type_material` (`id`)
+    REFERENCES `inventario`.`types_materials` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -175,7 +175,7 @@ CREATE TABLE IF NOT EXISTS `inventario`.`material` (
   UNIQUE INDEX `number_metallic_UNIQUE` (`number_metallic` ASC) VISIBLE,
   CONSTRAINT `type_mat_id`
     FOREIGN KEY (`type_material_id`)
-    REFERENCES `inventario`.`type_material` (`id`)
+    REFERENCES `inventario`.`types_materials` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `manufacturer_id`
