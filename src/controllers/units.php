@@ -4,7 +4,7 @@ requireValidSession(true);
 require_once(realpath(MODEL_PATH . '/Unit.php'));
 
 $exception = null;
-// $parts = isset($_GET['parts']) ? '&parts=true' : '';
+$parts = isset($_GET['parts']) ? '&parts=true' : '';
 $divisions = $_GET['divisions'];
 $msgTitle = $divisions ? 'Escolha a unidade para gerenciar suas Divisões' : '';
 

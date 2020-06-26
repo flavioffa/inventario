@@ -85,11 +85,11 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `inventario`.`location`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `inventario`.`location` ;
+DROP TABLE IF EXISTS `inventario`.`parts` ;
 
-CREATE TABLE IF NOT EXISTS `inventario`.`location` (
+CREATE TABLE IF NOT EXISTS `inventario`.`parts` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `name_location` VARCHAR(100) NOT NULL,
+  `name_part` VARCHAR(100) NOT NULL,
   `division_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `divison_id_idx` (`division_id` ASC) VISIBLE,

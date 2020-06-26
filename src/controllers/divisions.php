@@ -5,10 +5,10 @@ require_once(realpath(MODEL_PATH . '/Unit.php'));
 require_once(realpath(MODEL_PATH . '/Division.php'));
 
 $unit = Unit::getOne(['id' => $_GET['unit']]);
-// $parts = $_GET['parts'];
+$parts = $_GET['parts'];
 // $scales = isset($_GET['scales']) ? '&scales=true' : '';
 $exception = null;
-$msgTitle = 'Escolha a Divisão para gerenciar seus Órgãos';
+$msgTitle = 'Escolha a Divisão para gerenciar seus Setores';
 
 if(isset($_GET['delete'])) {
     try {
@@ -27,7 +27,7 @@ $divisions = Division::get(['division_unit_id' => $_GET['unit']]);
 
 if(!isset($parts)) {
     loadTemplateView('divisions/divisions', [
-        'msgTitle' => 'Gerenciar Divisões',
+        'msgTitle' => "Gerenciar Divisões ($unit->initials_unit)",
         'divisions' => $divisions,
         'unit' => $unit,
         'exception' => $exception
@@ -36,8 +36,8 @@ if(!isset($parts)) {
     loadTemplateView('divisions/divisions', [
         'msgTitle' => $msgTitle,
         'divisions' => $divisions,
-        'unit' => $unit
-        // 'parts' => $parts,
+        'unit' => $unit,
+        'parts' => $parts,
         // 'scales' => $scales
     ]);
 }

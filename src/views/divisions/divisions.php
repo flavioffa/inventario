@@ -3,7 +3,7 @@
         renderTitle(
             'Divisões',
             $msgTitle,
-            'icofont-cube'
+            'icofont-ui-home'
         );
 
         include(TEMPLATE_PATH . "/messages.php");
@@ -42,7 +42,7 @@
                         </a>
                         <?php else: ?>
                             <a class="btn btn-primary btn-sm" href="parts.php?unit=<?= $unit->initials_unit ?>&division=<?= $division->id ?><?= $scales ?>">
-                                Órgãos
+                                Setores
                             </a>
                         <?php endif; ?>
                     </td>
