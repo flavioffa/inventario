@@ -25,7 +25,7 @@ if(empty($search)) {
     $typesMaterials = TypeMaterial::get(['raw' => "name_type LIKE '%{$search}%' ORDER BY name_type ASC"]);
 }
 
-loadTemplateView('materials/types_materials', [
+loadTemplateView('settings/types_materials', [
     'typesMaterials' => $typesMaterials,
     'exception' => $exception,
     'search' => $search

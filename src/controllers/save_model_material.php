@@ -31,7 +31,7 @@ if(count($_POST) === 0 && isset($_GET['update'])) {
     }
 }
 
-loadTemplateView('materials/save_model', $modelData + [
+loadTemplateView('settings/save_model', $modelData + [
     'exception' => $exception,
     'typesMaterials' => $typesMaterials
 ]);

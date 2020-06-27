@@ -25,7 +25,7 @@ if(empty($search)) {
     $manufacturers = Manufacturer::get(['raw' => "name_manufacturer LIKE '%{$search}%' ORDER BY name_manufacturer ASC"]);
 }
 
-loadTemplateView('materials/manufacturers', [
+loadTemplateView('settings/manufacturers', [
     'manufacturers' => $manufacturers,
     'exception' => $exception,
     'search' => $search

@@ -14,28 +14,16 @@
                 </a>
             </li> -->
             <!-- ?php if($user->is_admin): ?> -->
-            <!-- <li class="nav-item">
-                <a href="#">
-                    <i class="icofont-chart-histogram mr-2"></i>
-                    Criar Escala
-                </a>
-            </li>
             <li class="nav-item">
-                <a href="#">
-                    <i class="icofont-chart-histogram mr-2"></i>
-                    Gerenciar Escala
-                </a>
-            </li> -->
-            <li class="nav-item">
-                <a href="users.php">
-                    <i class="icofont-users mr-2"></i>
-                    Usuários
+                <a href="materials.php">
+                <i class="icofont-box mr-2"></i>
+                    Materiais
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" data-target="#menuMaterials">
-                    <i class="icofont-box mr-2"></i>
-                    Materiais
+                    <i class="icofont-ui-settings mr-2"></i>
+                    Configurações
                     <i class="icofont-simple-down"></i>
                 </a>
                 <div class="collapse" id="menuMaterials">
@@ -48,10 +36,20 @@
                         Modelo
                     </a>
                     <a class="dropdown-item" href="manufacturers.php?page=1">
-                    <i class="icofont-industries-5"></i>
+                        <i class="icofont-industries-5"></i>
                         Fabricante
                     </a>
+                    <a class="dropdown-item" href="status.php?">
+                    <i class="icofont-dashboard"></i>
+                        Status
+                    </a>
                 </div>
+            </li>
+            <li class="nav-item">
+                <a href="users.php">
+                    <i class="icofont-users mr-2"></i>
+                    Usuários
+                </a>
             </li>            
             <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" data-target="#menuUnits">

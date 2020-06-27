@@ -38,6 +38,5 @@ if(!isset($parts)) {
         'divisions' => $divisions,
         'unit' => $unit,
         'parts' => $parts,
-        // 'scales' => $scales
     ]);
 }

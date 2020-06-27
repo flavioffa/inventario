@@ -29,6 +29,6 @@ if(count($_POST) === 0 && isset($_GET['update'])) {
     }
 }
 
-loadTemplateView('materials/save_manufacturer', $manufacturerData + [
+loadTemplateView('settings/save_manufacturer', $manufacturerData + [
     'exception' => $exception
 ]);

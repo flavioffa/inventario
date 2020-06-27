@@ -22,7 +22,7 @@ if(isset($_GET['delete'])) {
                     
 $modelsMaterials = ModelMaterial::getModelsByType($filter, $page);
 
-loadTemplateView("materials/models_materials", [
+loadTemplateView("settings/models_materials", [
     'modelsMaterials' => $modelsMaterials,
     'exception' => $exception,
     'filter' => $filter
