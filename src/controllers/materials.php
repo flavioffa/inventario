@@ -5,6 +5,7 @@ require_once(realpath(MODEL_PATH . '/Material.php'));
 
 $exception = null;
 $filter = filter_input(INPUT_GET, 'filter');
+$typeFilter = filter_input(INPUT_GET, 'type');
 $page = intval(filter_input(INPUT_GET, 'page'));
 
 if(isset($_GET['delete'])) {
@@ -20,7 +21,7 @@ if(isset($_GET['delete'])) {
     }
 }
 
-$materials = Material::getMaterialsFullDetails($filter, $page, $order);
+$materials = Material::getMaterialsFullDetails($filter, $typeFilter, $page, $order);
 
 loadTemplateView('materials/materials', [
     'materials' => $materials,

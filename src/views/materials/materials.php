@@ -19,16 +19,26 @@
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroup-sizing-sm">
-                        <i class="icofont-search-2"></i>
+                        <i class="icofont-search-2" onclick="typeFilter('global')"></i>
                         </span>
                     </div>
-                    <input type="text" class="form-control" name="filter" id="filter" value="<?= $filter ?>"
-                        placeholder="Pesquisar" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                        <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" 
-                        onclick="insertFilterTermInUrl()" id="button-addon2">
-                    Buscar</button>
-                </div>
+                    <input type="text" class="form-control" name="global" id="filter" value="<?= $filter ?>"
+                        placeholder="Pesquisa Geral" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-outline-secondary" onclick="insertFilterTermInUrl()">Buscar</button>
+                        <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" id="number_unit" href="javascript:typeFilter('number_unit')">Etiq. CIMAER</a>
+                            <a class="dropdown-item" id="number_metallic" href="javascript:typeFilter('number_metallic')">Etiq. Metálica</a>
+                            <a class="dropdown-item" id="number_bmp" href="javascript:typeFilter('number_bmp')">Nº BMP</a>
+                            <div role="separator" class="dropdown-divider"></div>
+                            <a class="dropdown-item" id="room" href="javascript:typeFilter('room')">Sala</a>
+                            <div role="separator" class="dropdown-divider"></div>
+                            <a class="dropdown-item" id="global" href="javascript:typeFilter('global')">Geral</a>
+                        </div>
+                    </div>
                 </div>
             </div>    
         </div>
@@ -114,7 +124,13 @@
     // Insere na url o termo de busca e faz o reload da página para o mesmo ser lido pelo controller
     function insertFilterTermInUrl(){
         var filterTerm = document.getElementById("filter").value;
-        var html = 'materials.php?page=1&filter='+filterTerm;
+        var typeFilter = document.getElementById("filter").name;
+        var html = 'materials.php?page=1&filter='+filterTerm+'&type='+typeFilter;
         window.location.href = html;
+    }
+
+    function typeFilter(name) {
+        document.getElementById("filter").name = name;
+        document.getElementById("filter").placeholder = name;
     }    
 </script>

@@ -32,7 +32,7 @@ class Material extends Model {
         return parent::update();
     }
 
-    public static function getMaterialsFullDetails($filter, $page, $order = null) {
+    public static function getMaterialsFullDetails($filter, $typeFilter, $page, $order = null) {
         $pg = empty($page) ? 1 : $page;
         // Número de usuários por página
         $perPage = 10;
@@ -48,9 +48,9 @@ class Material extends Model {
         . " LEFT JOIN parts ON materials.part_id = parts.id" 
         . " INNER JOIN divisions ON materials.fk_division_id = divisions.id" 
         . " INNER JOIN status ON materials.status_id = status.id" 
-        . " WHERE types_materials.name_type LIKE '%{$filter}%' OR models_materials.name_model LIKE '%{$filter}%' OR manufacturers.name_manufacturer LIKE '%{$filter}%' OR parts.name_part LIKE '%{$filter}%' OR divisions.initials_division LIKE '%{$filter}%' OR status.name_status LIKE '%{$filter}%'"
+        . " WHERE " . ($typeFilter == 'global' ? "types_materials.name_type LIKE '%{$filter}%' OR models_materials.name_model LIKE '%{$filter}%' OR manufacturers.name_manufacturer LIKE '%{$filter}%' OR parts.name_part LIKE '%{$filter}%' OR divisions.initials_division LIKE '%{$filter}%' OR status.name_status LIKE '%{$filter}%'" : "materials.{$typeFilter} LIKE '%{$filter}%'")
         . " ORDER BY ".  ($order == null ? "materials.number_unit ASC" : $order);
-        
+
         // Monta o pedaço da query que LIMIT com o registro inicial($start) e o número de resgistro por página($perPage)
         $limit = empty($page) ? "" : " LIMIT {$start}, {$perPage}";
         // Monta a query de consulta anterior limitando o número de registro obtidos

@@ -24,11 +24,11 @@
                     </div>
                     <input type="text" class="form-control" name="filter" id="filter" value="<?= $filter ?>"
                         placeholder="Pesquisar" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                        <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" 
-                        onclick="insertFilterTermInUrl()" id="button-addon2">
-                    Buscar</button>
-                </div>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" onclick="insertFilterTermInUrl()" id="button-addon2">
+                            Buscar
+                        </button>
+                    </div>
                 </div>
             </div>    
         </div>
