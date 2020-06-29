@@ -9,7 +9,7 @@
         include(TEMPLATE_PATH . "/messages.php");
     ?>
 
-    <div class="container" id="search">
+    <!-- <div class="container" id="search"> -->
         <div class="row justify-content-between">
             <div class="col-6">
                 <a class="btn btn-lg btn-primary"
@@ -42,9 +42,9 @@
                 </div>
             </div>    
         </div>
-    </div>
+    <!-- </div> -->
 
-    <table class="table table-bordered table-striped table-hover">
+    <table class="table table-bordered table-striped table-hover table-sm">
         <thead class="thead-light">
             <tr>
                 <th class="text-center align-middle" rowspan="2">Etiqueta CIMAER</th>
@@ -56,7 +56,8 @@
                 <th class="text-center align-middle" rowspan="2">Nº de série</th>
                 <th class="text-center align-middle" rowspan="2">Origem</th>
                 <th class="text-center align-middle" colspan="3">Localização</th>
-                <th class="text-center align-middle" rowspan="2">Status</th>
+                <th class="text-center align-middle" rowspan="2">Status da Carga</th>
+                <th class="text-center align-middle" rowspan="2">Condição</th>
                 <th class="text-center align-middle" rowspan="2">GMM/Cautela</th>
                 <th class="text-center align-middle" rowspan="2">Observação</th>
                 <th class="text-center align-middle" rowspan="2">Ações</th> 
@@ -74,32 +75,33 @@
         </tr>
     <?php endif; ?>
     <?php foreach($materials['materials'] as $material): ?>
-        <tr>
-        <td class="align-middle text-center"><?= $material->number_unit; ?></td>
-        <td class="align-middle"><?= $material->number_metallic ?></td>
-        <td class="align-middle"><?= $material->number_bmp ?></td>
-        <td class="align-middle"><?= $material->name_type ?></td>
-        <td class="align-middle"><?= $material->name_model ?></td>
-        <td class="align-middle"><?= $material->name_manufacturer ?></td>
-        <td class="align-middle"><?= $material->number_serial ?></td>
-        <td class="align-middle"><?= $material->origin ?></td>
-        <td class="align-middle"><?= $material->initials_division ?></td>
-        <td class="align-middle"><?= $material->name_part ?></td>
-        <td class="align-middle"><?= $material->room ?></td>
-        <td class="align-middle"><?= $material->name_status ?></td>
-        <td class="align-middle"><?= $material->gmm_cautela ?></td>
-        <td class="align-middle"><?= $material->obs ?></td>
-        <td class="align-middle">
-            <a href="save_model_material.php?update=<?= $model->id ?>" 
-                class="btn btn-warning rounded-circle btn-sm mr-2">
-                <i class="icofont-edit"></i>
-            </a>
-            <a href="?delete=<?= $model->id ?>"
-                class="btn btn-danger rounded-circle btn-sm"
-                onclick="return confirm('Tem certeza que deseja excluir?')">
-                <i class="icofont-trash"></i>
-            </a>
-        </td>
+        <tr class="<?= $material->color_status == 'white' ? '' : ($material->color_status == 'dark' ? 'bg-secondary text-white' : "table-{$material->color_status}"); ?>">
+            <td class="align-middle text-center"><?= $material->number_unit; ?></td>
+            <td class="align-middle"><?= $material->number_metallic ?></td>
+            <td class="align-middle"><?= $material->number_bmp ?></td>
+            <td class="align-middle"><?= $material->name_type ?></td>
+            <td class="align-middle"><?= $material->name_model ?></td>
+            <td class="align-middle"><?= $material->name_manufacturer ?></td>
+            <td class="align-middle"><?= $material->number_serial ?></td>
+            <td class="align-middle"><?= $material->origin ?></td>
+            <td class="align-middle"><?= $material->initials_division ?></td>
+            <td class="align-middle"><?= $material->name_part ?></td>
+            <td class="align-middle"><?= $material->room ?></td>
+            <td class="align-middle"><?= $material->name_status ?></td>
+            <td class="align-middle"><?= $material->name_condition ?></td>
+            <td class="align-middle"><?= $material->gmm_cautela ?></td>
+            <td class="align-middle"><?= $material->obs ?></td>
+            <td class="align-middle">
+                <a href="save_model_material.php?update=<?= $model->id ?>" 
+                    class="btn btn-warning rounded-circle btn-sm mr-2">
+                    <i class="icofont-edit"></i>
+                </a>
+                <a href="?delete=<?= $model->id ?>"
+                    class="btn btn-danger rounded-circle btn-sm"
+                    onclick="return confirm('Tem certeza que deseja excluir?')">
+                    <i class="icofont-trash"></i>
+                </a>
+            </td>
         </tr>
     <?php endforeach?>
     </tbody>
@@ -131,6 +133,22 @@
 
     function typeFilter(name) {
         document.getElementById("filter").name = name;
-        document.getElementById("filter").placeholder = name;
+        switch (name) {
+            case 'number_unit':
+                var message = 'Pesquisar etiqueta da unidade';
+                break;
+            case 'number_bmp':
+                var message = 'Pesquisar nº patrimônio BMP';
+                break;
+            case 'number_metallic':
+                var message = 'Pesquisar etiqueta metálica';
+                break;
+            case 'room':
+                var message = 'Pesquisar pela sala';
+                break;
+            default:
+                var message = 'Pesquisa geral';
+        }
+        document.getElementById("filter").placeholder = message;
     }    
 </script>

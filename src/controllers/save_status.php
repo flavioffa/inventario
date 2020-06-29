@@ -23,7 +23,13 @@ if(count($_POST) === 0 && isset($_GET['update'])) {
         }
         $_POST = [];
     } catch(Exception $e) {
-        $exception = $e;
+        if(stripos($e->getMessage(), 'name_status')) {
+            addErrorMsg('Não é possível usar status duplicado.');
+        } elseif(stripos($e->getMessage(), 'color_status')) {
+            addErrorMsg('Não é possível usar cor em uso para outro status.');
+        } else {    
+            $exception = $e;
+        }
     } finally {
         $statusData = $_POST;
     }

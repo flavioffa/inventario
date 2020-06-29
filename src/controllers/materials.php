@@ -21,7 +21,7 @@ if(isset($_GET['delete'])) {
     }
 }
 
-$materials = Material::getMaterialsFullDetails($filter, $typeFilter, $page, $order);
+$materials = Material::getMaterialsFullDetails($filter, $typeFilter, $page);
 
 loadTemplateView('materials/materials', [
     'materials' => $materials,

@@ -32,15 +32,16 @@ class Material extends Model {
         return parent::update();
     }
 
-    public static function getMaterialsFullDetails($filter, $typeFilter, $page, $order = null) {
+    public static function getMaterialsFullDetails($filter, $typeFilter, $page) {
         $pg = empty($page) ? 1 : $page;
         // Número de usuários por página
         $perPage = 10;
         // Cálcula o registro inicial para compor a query LIMIT
         $start = ($pg - 1) * $perPage;
-
+        // Se o tipo de filtro estiver vazio ou nulo, seta como global
+        $typeFilter = empty($typeFilter) ? 'global' : $typeFilter;
         // Monta a query para consultar todos usuários na $table que pertencem a $type e ordena pela antiguidade
-        $sqlTotal = "SELECT materials.*, types_materials.name_type, models_materials.name_model, manufacturers.name_manufacturer, parts.name_part, divisions.name_division, divisions.initials_division, status.name_status"
+        $sqlTotal = "SELECT materials.*, types_materials.name_type, models_materials.name_model, manufacturers.name_manufacturer, parts.name_part, divisions.name_division, divisions.initials_division, status.name_status, status.color_status, conditions.name_condition, conditions.color_condition"
         . " FROM " . static::$tableName
         . " INNER JOIN types_materials ON materials.type_material_id = types_materials.id" 
         . " INNER JOIN models_materials ON materials.model_id = models_materials.id" 
@@ -48,8 +49,9 @@ class Material extends Model {
         . " LEFT JOIN parts ON materials.part_id = parts.id" 
         . " INNER JOIN divisions ON materials.fk_division_id = divisions.id" 
         . " INNER JOIN status ON materials.status_id = status.id" 
-        . " WHERE " . ($typeFilter == 'global' ? "types_materials.name_type LIKE '%{$filter}%' OR models_materials.name_model LIKE '%{$filter}%' OR manufacturers.name_manufacturer LIKE '%{$filter}%' OR parts.name_part LIKE '%{$filter}%' OR divisions.initials_division LIKE '%{$filter}%' OR status.name_status LIKE '%{$filter}%'" : "materials.{$typeFilter} LIKE '%{$filter}%'")
-        . " ORDER BY ".  ($order == null ? "materials.number_unit ASC" : $order);
+        . " INNER JOIN conditions ON materials.condition_id = conditions.id" 
+        . " WHERE " . ($typeFilter == 'global' ? "types_materials.name_type LIKE '%{$filter}%' OR models_materials.name_model LIKE '%{$filter}%' OR manufacturers.name_manufacturer LIKE '%{$filter}%' OR parts.name_part LIKE '%{$filter}%' OR divisions.initials_division LIKE '%{$filter}%' OR status.name_status LIKE '%{$filter}%' OR conditions.name_condition LIKE '%{$filter}%'" : "materials.{$typeFilter} LIKE '%{$filter}%'")
+        . " ORDER BY ".  ($typeFilter == 'global' ? "materials.number_unit ASC" : "materials.{$typeFilter} ASC");
 
         // Monta o pedaço da query que LIMIT com o registro inicial($start) e o número de resgistro por página($perPage)
         $limit = empty($page) ? "" : " LIMIT {$start}, {$perPage}";

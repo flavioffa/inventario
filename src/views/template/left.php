@@ -39,9 +39,13 @@
                         <i class="icofont-industries-5"></i>
                         Fabricante
                     </a>
-                    <a class="dropdown-item" href="status.php?">
-                    <i class="icofont-dashboard"></i>
+                    <a class="dropdown-item" href="status.php">
+                        <i class="icofont-dashboard"></i>
                         Status
+                    </a>
+                    <a class="dropdown-item" href="conditions.php">
+                        <i class="icofont-star"></i>
+                        Condição
                     </a>
                 </div>
             </li>

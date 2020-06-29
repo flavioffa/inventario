@@ -1,30 +1,30 @@
 <?php
-class Status extends Model {
-    protected static $tableName = 'status';
+class Condition extends Model {
+    protected static $tableName = 'conditions';
     protected static $columns = [
         'id', 
-        'name_status',
-        'color_status'
+        'name_condition',
+        'color_condition'
     ];
     
     public function insert() {
         $this->validate();
         $this->id = null;
-        $this->name_status = mb_strtoupper($this->name_status, 'UTF-8');
+        $this->name_condition = mb_strtoupper($this->name_condition, 'UTF-8');
         return parent::insert();
     }
 
     public function update() {
         $this->validate();
-        $this->name_status = mb_strtoupper($this->name_status, 'UTF-8');
+        $this->name_condition = mb_strtoupper($this->name_condition, 'UTF-8');
         return parent::update();
     }
 
     private function validate() {
         $errors = [];
 
-        if(!$this->name_status) {
-            $errors['name_status'] = 'Status é um campo abrigatório.';
+        if(!$this->name_condition) {
+            $errors['name_condition'] = 'Condição é um campo abrigatório.';
         }
 
         if(count($errors) > 0) {

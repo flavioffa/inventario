@@ -148,6 +148,20 @@ DROP TABLE IF EXISTS `inventario`.`status` ;
 CREATE TABLE IF NOT EXISTS `inventario`.`status` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name_status` VARCHAR(45) UNIQUE NOT NULL,
+  `color_status` VARCHAR(20) UNIQUE NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `inventario`.`conditions`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `inventario`.`conditions` ;
+
+CREATE TABLE IF NOT EXISTS `inventario`.`conditions` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name_condition` VARCHAR(45) UNIQUE NOT NULL,
+  `color_condition` VARCHAR(45) UNIQUE NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -161,19 +175,20 @@ CREATE TABLE IF NOT EXISTS `inventario`.`materials` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `model_id` INT NOT NULL,
   `type_material_id` INT NOT NULL,
-  `manufacturer_id` INT,
-  `fk_division_id` INT NOT NULL,
-  `part_id` INT,
+  `manufacturer_id` INT NULL,
+  `fk_division_id` INT(10) NOT NULL,
+  `part_id` INT NULL,
   `room` INT NULL,
   `origin` VARCHAR(45) NULL,
   `number_unit` INT UNIQUE NOT NULL,
   `number_bmp` INT UNIQUE NULL,
-  `number_metallic` INT UNIQUE NULL,
+  `number_metallic` UNIQUE INT NULL,
   `number_serial` VARCHAR(100) NULL,
-  `status_id` INT NOT NULL,
-  `gmm_cautela` VARCHAR(100),
+  `status_id` INT(10) NOT NULL,
+  `condition_material` INT(2) NOT NULL,
+  `gmm_cautela` VARCHAR(100) NULL,
   `obs` VARCHAR(300) NULL,
-  `qrcode` VARCHAR(200) UNIQUE NULL,
+  `qrcode` VARCHAR(200) NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `type_mat_id`
     FOREIGN KEY (`type_material_id`)
@@ -183,11 +198,6 @@ CREATE TABLE IF NOT EXISTS `inventario`.`materials` (
   CONSTRAINT `manufacturer_id`
     FOREIGN KEY (`manufacturer_id`)
     REFERENCES `inventario`.`manufacturers` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_division_id`
-    FOREIGN KEY (`fk_division_id`)
-    REFERENCES `inventario`.`divisions` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `part_id`
@@ -203,6 +213,16 @@ CREATE TABLE IF NOT EXISTS `inventario`.`materials` (
   CONSTRAINT `status_id`
     FOREIGN KEY (`status_id`)
     REFERENCES `inventario`.`status` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_division_id`
+    FOREIGN KEY (`fk_divison_id`)
+    REFERENCES `inventario`.`divisions` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `condition_mat`
+    FOREIGN KEY (`condition_material`)
+    REFERENCES `inventario`.`conditions` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
