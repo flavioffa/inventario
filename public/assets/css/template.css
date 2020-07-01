@@ -1,0 +1,335 @@
+body {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: 64px 1fr 40px;
+    grid-template-areas: 
+        "header header"
+        "sidebar content"
+        "sidebar footer";
+    height: 100vh;
+    margin: 0;
+    background-color: #DDD;
+}
+
+body.hide-sidebar {
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+        "header"
+        "content"
+        "footer";
+}
+
+header.header {
+    /* position: fixed; */
+    /* left: 0;
+    top: 0; */
+    grid-area: header;
+    display: flex;
+    background-color: #005C97;
+    align-items: center;
+    z-index: 10;
+    box-shadow: 
+        0 2px 4px -1px rgba(0, 0, 0, .2),
+        0 4px 4px 0px rgba(0, 0, 0, .14),
+        0 1px 10px 0px rgba(0, 0, 0, .12);
+}
+
+header.header .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1.7rem;
+    flex-basis: 250px;
+    height: 100%;
+}
+
+header.header .menu-toggle {
+    color: white;
+    cursor: pointer;
+}
+
+header.header .spacer {
+    flex: 1;
+}
+
+header.header .dropdown {
+    position: relative;
+    height: 100%;
+}
+
+header.header .dropdown-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-size: 1.1rem;
+    color: white;
+    cursor: pointer;
+}
+
+header.header .dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 100%;
+    background-color: #f9f9f9;
+    padding: 15px 0px;
+    z-index: 100;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, .2);
+}
+
+header.header .dropdown:hover .dropdown-content {
+    display: block;
+}
+
+header.header .dropdown-content ul {
+    list-style: none;
+    padding-left: 5px;
+    margin-bottom: 0;
+}
+
+header.header .dropdown-content a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #222;
+    padding: 7px;
+    font-size: 1.1rem;
+}
+
+header.header .dropdown-content a:hover {
+    background-color: rgba(0, 0, 0, .05);
+}
+
+header.header .dropdown:hover {
+    background-color: rgba(0, 0, 0, .1);
+}
+
+aside.sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    grid-area: sidebar;
+    box-shadow: -5px 0px 25px 1px rgba(0, 0, 0, 0.4);
+    background-color: #FFF;
+}
+
+aside.sidebar .menu {
+    width: 100%;
+    flex-grow: 1;
+}
+
+aside.sidebar .menu ul.nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+aside.sidebar .menu li.nav-item {
+    margin: 0;
+    padding: 10px 10px 10px 25px;
+}
+
+aside.sidebar .menu li.nav-item:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+aside.sidebar .menu li.nav-item a {
+    font-size: 1.2rem;
+    color: #555;
+    text-decoration: none;
+}
+
+aside.sidebar .menu li.nav-item a.nav-link {
+    padding: 0px;
+    cursor: pointer;
+}
+
+body.hide-sidebar aside.sidebar {
+    display: none;
+}
+
+main.content {
+    background-color: #FFF;
+    grid-area: content;
+    margin: 20px;
+    padding: 15px 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.2);
+}
+
+main.content .content-title {
+    display: flex;
+    align-items: center;
+    padding-bottom: 15px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #CCC;
+}
+
+main.content .card .card-header .content-title {
+    display: flex;
+    align-items: center;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    border-bottom: none;
+}
+
+main.content .card form .custom-control.is-invalid {
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    border-color: #dc3545;
+}
+
+main.content .card form table.table.table-sm {
+    margin-bottom: 0px;
+}
+
+main.content form table.table.table-bordered.table-sm tbody tr td.is_invalid {
+    border: 1px solid #dc3545;
+}
+
+main.content .card form .errors {
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #dc3545;
+}
+
+main.content .content-title .icon {
+    font-size: 2rem;
+}
+
+main.content .content-title h1 {
+    color: #444;
+    font-size: 1.7rem;
+    font-weight: 300;
+    margin: 0;
+}
+
+main.content .content-title h2 {
+    color: #888;
+    font-size: 1.2rem;
+    font-weight: 300;
+    margin: 0;
+}
+
+main.content .container#search {
+    padding-right: 0px;
+}
+
+main.content .content-month {
+    font-family: Verdana, sans-serif;
+}
+
+main.content .content-moth ul {
+    list-style-type: none;
+}
+
+/* Month header */
+main.content .content-month .month {
+    padding: 50px 25px;
+    width: 100%;
+    background: #1abc9c;
+    text-align: center;
+}
+  
+/* Month list */
+main.content .content-month .month ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+  
+main.content .content-month .month ul li {
+    color: white;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+  
+/* Previous button inside month header */
+main.content .content-month .month .prev {
+    float: left;
+    padding-top: 10px;
+}
+  
+/* Next button */
+main.content .content-month .month .next {
+    float: right;
+    padding-top: 10px;
+}
+
+/* Weekdays (Mon-Sun) */
+main.content .content-month .weekdays {
+    margin: 0;
+    padding: 10px 0;
+    background-color:#ddd;
+}
+  
+main.content .content-month .weekdays li {
+    display: inline-block;
+    width: 13.6%;
+    color: #666;
+    text-align: center;
+}
+
+/* Days (1-31) */
+main.content .content-month .days {
+    padding: 10px 0;
+    background: #eee;
+    margin: 0;
+}
+  
+main.content .content-month .days li {
+    list-style-type: none;
+    display: inline-block;
+    width: 13.6%;
+    text-align: center;
+    margin-bottom: 5px;
+    font-size:12px;
+    color: #777;
+}
+
+main.content .content-month .days li.red {
+    background-color: tomato;
+    color: #eee
+}
+main.content .content-month .days li.purple {
+    background-color: purple;
+    color: #eee
+}
+
+main.content .card ul li #title{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+main.content .card ul li#days-red #title {
+    color: tomato;
+}
+
+main.content .card ul li#days-purple #title {
+    color: purple;
+}
+
+main.content form div.form-row div.form-group span.loading-model {
+    color: gray;
+    display: none;
+}
+
+main.content form div.form-row div.form-group span.loading-part {
+    color: gray;
+    display: none;
+}
+
+footer.footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 20px;
+    font-size: 1rem;
+    grid-area: footer;
+    background-color: #222;
+    color: #FFF;
+}

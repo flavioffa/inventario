@@ -14,6 +14,7 @@ class Material extends Model {
         'number_metallic',
         'number_serial',
         'status',
+        'condition_id',
         'gmm_cautela',
         'obs',
         'qrcode'
@@ -85,16 +86,32 @@ class Material extends Model {
     private function validate() {
         $errors = [];
 
-        if(!$this->name_unit) {
-            $errors['name_unit'] = 'Nome é um campo abrigatório.';
+        if(!$this->number_unit) {
+            $errors['number_unit'] = 'Nº da etiqueta da unidade é um campo abrigatório.';
         }
 
-        if(!$this->initials_unit) {
-            $errors['initials_unit'] = 'Sigla é um campo abrigatório.';
+        if(!$this->type_material_id) {
+            $errors['type_material_id'] = 'Tipo é um campo abrigatório.';
         }
 
-        if(!$this->chief_id) {
-            $errors['chief_id'] = 'Comandante é um campo abrigatório.';
+        if(!$this->model_id) {
+            $errors['model_id'] = 'Modelo é um campo abrigatório.';
+        }
+
+        if(!$this->fk_division_id) {
+            $errors['fk_division_id'] = 'Divisão/Seção é um campo abrigatório.';
+        }
+
+        if(!$this->part_id) {
+            $errors['part_id'] = 'Setor é um campo abrigatório.';
+        }
+
+        if(!$this->status_id) {
+            $errors['status_id'] = 'Status é um campo abrigatório.';
+        }
+
+        if(!$this->condition_id) {
+            $errors['condition_id'] = 'Condição é um campo abrigatório.';
         }
 
         if(count($errors) > 0) {

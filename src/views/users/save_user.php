@@ -3,7 +3,7 @@
         renderTitle(
             'Cadastro de Usuário',
             'Crie e atualize o usuário',
-            'icofont-user'
+            'icofont-user mr-2'
         );
 
         include(TEMPLATE_PATH . "/messages.php");

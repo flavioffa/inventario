@@ -58,7 +58,5 @@
             buttonClick.className = (buttonClick.className).replace('active', '');
             document.getElementById("color_status").value = 'white';
         }
-        console.log(buttonClick.className);
-        console.log(document.getElementById("color_status").value);
     }    
 </script>
