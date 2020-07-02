@@ -11,12 +11,13 @@ class Status extends Model {
         $this->validate();
         $this->id = null;
         $this->name_status = mb_strtoupper($this->name_status, 'UTF-8');
+        $this->color_status = $this->color_status ? $this->color_status : 'white';
         return parent::insert();
     }
 
     public function update() {
         $this->validate();
-        $this->name_status = mb_strtoupper($this->name_status, 'UTF-8');
+        $this->color_status = $this->color_status ? $this->color_status : 'white';
         return parent::update();
     }
 

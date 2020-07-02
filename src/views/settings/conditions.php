@@ -44,7 +44,7 @@
                 </tr>
             <?php endif; ?>
             <?php foreach($conditions as $key => $value): ?>
-                <tr class="<?= $value->color_condition == 'white' ? '' : ($value->color_condition == 'dark' ? 'bg-secondary text-white' : "text-{$value->color_condition}"); ?>">
+                <tr class="<?= $value->color_condition == 'dark' ? '' : "text-{$value->color_condition}"; ?>">
                     <td class="align-middle text-center"><?= ($key + 1); ?></td>
                     <td class="align-middle">
                         <?= $value->name_condition ?>

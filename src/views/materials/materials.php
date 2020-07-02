@@ -44,7 +44,7 @@
         </div>
     <!-- </div> -->
 
-    <table class="table table-bordered table-striped table-hover table-sm">
+    <table class="table table-bordered table-hover table-sm">
         <thead class="thead-light">
             <tr>
                 <th class="text-center align-middle" rowspan="2">Etiqueta CIMAER</th>
@@ -63,9 +63,9 @@
                 <th class="text-center align-middle" rowspan="2">Ações</th> 
             </tr>
             <tr>
-                <th class="text-center">Divisão</th>
-                <th class="text-center">Setor</th>
-                <th class="text-center">Sala</th>
+                <th class="text-center align-middle">Divisão</th>
+                <th class="text-center align-middle">Setor</th>
+                <th class="text-center align-middle">Sala</th>
             </tr>   
         </thead>
         <tbody>
@@ -75,7 +75,8 @@
         </tr>
     <?php endif; ?>
     <?php foreach($materials['materials'] as $material): ?>
-        <tr class="<?= $material->color_status == 'white' ? '' : ($material->color_status == 'dark' ? 'bg-secondary text-white' : "table-{$material->color_status}"); ?>">
+        <tr class="<?= $material->color_status == 'white' ? '' : ($material->color_status == 'dark' ? 'bg-secondary text-white' : "table-{$material->color_status}"); ?> <?= $material->color_condition == 'dark' ? '' : "text-{$material->color_condition}"; ?>
+        ">
             <td class="align-middle text-center"><?= $material->number_unit; ?></td>
             <td class="align-middle"><?= $material->number_metallic ?></td>
             <td class="align-middle"><?= $material->number_bmp ?></td>
@@ -92,14 +93,18 @@
             <td class="align-middle"><?= $material->gmm_cautela ?></td>
             <td class="align-middle"><?= $material->obs ?></td>
             <td class="align-middle">
-                <a href="save_model_material.php?update=<?= $model->id ?>" 
+                <a href="save_model_material.php?update=<?= $material->id ?>" 
                     class="btn btn-warning rounded-circle btn-sm mr-2">
                     <i class="icofont-edit"></i>
                 </a>
-                <a href="?delete=<?= $model->id ?>"
+                <a href="?delete=<?= $material->id ?>"
                     class="btn btn-danger rounded-circle btn-sm"
                     onclick="return confirm('Tem certeza que deseja excluir?')">
                     <i class="icofont-trash"></i>
+                </a>
+                <a href="qrcode.php?create=<?= $material->id ?>" 
+                    class="btn btn-warning rounded-circle btn-sm mr-2">
+                    <i class="icofont-qr-code"></i>
                 </a>
             </td>
         </tr>

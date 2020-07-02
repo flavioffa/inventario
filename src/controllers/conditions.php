@@ -9,7 +9,7 @@ $search = filter_input(INPUT_GET, 'searchTerm');
 if(isset($_GET['delete'])) {
     try {
         Condition::deleteById($_GET['delete']);
-        addSuccessMsg('Fabricante excluído com sucesso.');
+        addSuccessMsg('Condição excluída com sucesso.');
     } catch(Exception $e) {
         if(stripos($e->getMessage(), 'FOREIGN KEY')) {
             addErrorMsg('Não é possível excluir Condição resgistrada em alguma tabela.');

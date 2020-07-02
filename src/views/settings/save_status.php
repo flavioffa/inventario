@@ -22,18 +22,27 @@
             </div>
         </div>
         <div class="form-row">
-            <div class="form-group col-md-12">
-            <label for="name_status">Escolha a cor de fundo do Status(Opcional)</label>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend" id="button-addon3">
-                        <button class="btn btn-outline-primary <?=$color_status == 'primary' ? 'active' : ''; ?>" id="primary" type="button" onclick="setColor('primary')">Azul</button>
-                        <button class="btn btn-outline-success <?=$color_status == 'success' ? 'active' : ''; ?>" id="success" type="button" onclick="setColor('success')">Verde</button>
-                        <button class="btn btn-outline-danger <?=$color_status == 'danger' ? 'active' : ''; ?>" id="danger" type="button" onclick="setColor('danger')">Vermelho</button>
-                        <button class="btn btn-outline-warning <?=$color_status == 'warning' ? 'active' : ''; ?>" id="warning" type="button" onclick="setColor('warning')">Amarelo</button>
-                        <button class="btn btn-outline-dark <?=$color_status == 'dark' ? 'active' : ''; ?>" id="dark" type="button" onclick="setColor('dark')">Preto</button>
-                        <button class="btn btn-outline-secondary <?=$color_status == 'secondary' ? 'active' : ''; ?>" id="secondary" type="button" onclick="setColor('secondary')">Cinza</button>
-                    </div>
-                    <input type="hidden" class="form-control" name="color_status" id="color_status" value="<?= $color_status ?? 'white' ?>">
+            <div class="form-group col-md-8">
+                <label for="name_condition">Escolha a cor de fundo do Status(Opcional)</label>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-outline-primary <?=$color_status == 'primary' ? 'active' : ''; ?>">
+                        <input type="radio" name="color_status" id="option1" autocomplete="off" value="primary"> Azul
+                    </label>
+                    <label class="btn btn-outline-success <?=$color_status == 'success' ? 'active' : ''; ?>">
+                        <input type="radio" name="color_status" id="option2" autocomplete="off" value="success"> Verde
+                    </label>
+                    <label class="btn btn-outline-danger <?=$color_status == 'danger' ? 'active' : ''; ?>">
+                        <input type="radio" name="color_status" id="option4" autocomplete="off" value="danger"> Vermelho
+                    </label>
+                    <label class="btn btn-outline-warning <?=$color_status == 'warning' ? 'active' : ''; ?>">
+                        <input type="radio" name="color_status" id="option5" autocomplete="off" value="warning"> Amarelo
+                    </label>
+                    <label class="btn btn-outline-dark <?=$color_status == 'dark' ? 'active' : ''; ?>">
+                        <input type="radio" name="color_status" id="option6" autocomplete="off" value="dark"> Preto
+                    </label>
+                    <label class="btn btn-outline-secondary <?=$color_status == 'secondary' ? 'active' : ''; ?>">
+                        <input type="radio" name="color_status" id="option7" autocomplete="off" value="secondary"> Cinza
+                    </label>
                 </div>
             </div>
         </div>
@@ -44,19 +53,3 @@
         </div>
     </form>    
 </main>
-<script>
-    function setColor(name) {
-        var buttonClick = document.getElementById(name);
-        var buttonActive = document.getElementById("color_status").value
-        if((buttonClick.className).indexOf('active') == -1) {
-            if(buttonActive !== 'white') {
-                document.getElementById(buttonActive).className = 'btn btn-outline-'+buttonActive;
-            }
-            buttonClick.className = (buttonClick.className) + ' active';
-            document.getElementById("color_status").value = name;
-        } else {
-            buttonClick.className = (buttonClick.className).replace('active', '');
-            document.getElementById("color_status").value = 'white';
-        }
-    }    
-</script>

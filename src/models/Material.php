@@ -6,6 +6,7 @@ class Material extends Model {
         'model_id',
         'type_material_id',
         'manufacturer_id',
+        'fk_division_id',
         'part_id',
         'room',
         'origin',
@@ -13,7 +14,7 @@ class Material extends Model {
         'number_bmp',
         'number_metallic',
         'number_serial',
-        'status',
+        'status_id',
         'condition_id',
         'gmm_cautela',
         'obs',
@@ -23,6 +24,10 @@ class Material extends Model {
     public function insert() {
         $this->validate();
         $this->id = null;
+        $this->manufacturer_id = !empty($this->manufacturer_id) ? $this->manufacturer_id : null; 
+        $this->room = !empty($this->room) ? $this->room : null; 
+        $this->gmm_cautela = !empty($this->gmm_cautela) ? $this->gmm_cautela : null; 
+        $this->obs = !empty($this->obs) ? $this->obs : null; 
         $this->origin = mb_strtoupper($this->origin, 'UTF-8');
         return parent::insert();
     }
@@ -33,7 +38,7 @@ class Material extends Model {
         return parent::update();
     }
 
-    public static function getMaterialsFullDetails($filter, $typeFilter, $page) {
+    public static function getMaterialsFullDetails($filter, $typeFilter, $page = null) {
         $pg = empty($page) ? 1 : $page;
         // Número de usuários por página
         $perPage = 10;
@@ -112,6 +117,10 @@ class Material extends Model {
 
         if(!$this->condition_id) {
             $errors['condition_id'] = 'Condição é um campo abrigatório.';
+        }
+
+        if(!$this->qrcode) {
+            addErrorMsg('Faltando nome do QR-Code.');
         }
 
         if(count($errors) > 0) {

@@ -101,7 +101,7 @@ class Model {
         }
         $sql[strlen($sql) - 1] = ')';
         $id = Database::executeSQL($sql);
-        $this->id = $id;
+        return $this->id = $id;
     }
 
     // Atualiza dados do User no BD

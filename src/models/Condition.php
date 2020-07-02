@@ -11,12 +11,14 @@ class Condition extends Model {
         $this->validate();
         $this->id = null;
         $this->name_condition = mb_strtoupper($this->name_condition, 'UTF-8');
+        $this->color_condition = $this->color_condition ? $this->color_condition : 'dark';
         return parent::insert();
     }
 
     public function update() {
         $this->validate();
         $this->name_condition = mb_strtoupper($this->name_condition, 'UTF-8');
+        $this->color_condition = $this->color_condition ? $this->color_condition : 'dark';
         return parent::update();
     }
 
