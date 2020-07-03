@@ -63,15 +63,15 @@
                 <th class="text-center align-middle" rowspan="2">Ações</th> 
             </tr>
             <tr>
-                <th class="text-center align-middle">Divisão</th>
+                <th class="text-center align-middle">Seção</th>
                 <th class="text-center align-middle">Setor</th>
                 <th class="text-center align-middle">Sala</th>
             </tr>   
         </thead>
         <tbody>
-    <?php if(count($materials) == 0): ?>
+    <?php if(count($materials['materials']) == 0): ?>
         <tr>
-            <td colspan="15">Nenhum material cadastrado.</td>
+            <td colspan="16">Nenhum material cadastrado.</td>
         </tr>
     <?php endif; ?>
     <?php foreach($materials['materials'] as $material): ?>
@@ -93,7 +93,7 @@
             <td class="align-middle"><?= $material->gmm_cautela ?></td>
             <td class="align-middle"><?= $material->obs ?></td>
             <td class="align-middle">
-                <a href="save_model_material.php?update=<?= $material->id ?>" 
+                <a href="save_material.php?update=<?= $material->id ?>" 
                     class="btn btn-warning rounded-circle btn-sm mr-2">
                     <i class="icofont-edit"></i>
                 </a>
@@ -102,15 +102,16 @@
                     onclick="return confirm('Tem certeza que deseja excluir?')">
                     <i class="icofont-trash"></i>
                 </a>
-                <a href="qrcode.php?create=<?= $material->id ?>" 
+                <!-- <a href="qrcode.php?create=<?= $material->id ?>" 
                     class="btn btn-warning rounded-circle btn-sm mr-2">
                     <i class="icofont-qr-code"></i>
-                </a>
+                </a> -->
             </td>
         </tr>
     <?php endforeach?>
     </tbody>
 </table>
+<?php if(empty($filter)): ?>
 <nav aria-label="Navegação de página exemplo">
     <ul class="pagination justify-content-center">
         <li class="<?= $materials['currentPage'] == 1 ? 'page-item disabled' : 'page-item'; ?>">
@@ -126,13 +127,14 @@
         </li>
     </ul>
 </nav>
+<?php endif; ?>
 </main>
 <script>
     // Insere na url o termo de busca e faz o reload da página para o mesmo ser lido pelo controller
     function insertFilterTermInUrl(){
         var filterTerm = document.getElementById("filter").value;
         var typeFilter = document.getElementById("filter").name;
-        var html = 'materials.php?page=1&filter='+filterTerm+'&type='+typeFilter;
+        var html = 'materials.php?filter='+filterTerm+'&type='+typeFilter;
         window.location.href = html;
     }
 

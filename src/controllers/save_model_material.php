@@ -25,7 +25,11 @@ if(count($_POST) === 0 && isset($_GET['update'])) {
         }
         $_POST = [];
     } catch(Exception $e) {
-        $exception = $e;
+        if(stripos($e->getMessage(), 'model_type_unique')) {
+            addErrorMsg('Não é possível usar modelo já cadastrado do mesmo tipo.');
+        } else {    
+            $exception = $e;
+        }
     } finally {
         $modelData = $_POST;
     }

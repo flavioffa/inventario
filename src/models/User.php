@@ -8,6 +8,7 @@ class User extends Model {
         'rank',
         'cadre',
         'email',
+        'unit_id',
         'password',
         'is_admin'
     ];

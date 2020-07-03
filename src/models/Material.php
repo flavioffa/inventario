@@ -24,6 +24,8 @@ class Material extends Model {
     public function insert() {
         $this->validate();
         $this->id = null;
+        $this->number_bmp = !empty($this->number_bmp) ? $this->number_bmp : null; 
+        $this->number_metallic = !empty($this->number_metallic) ? $this->number_metallic : null; 
         $this->manufacturer_id = !empty($this->manufacturer_id) ? $this->manufacturer_id : null; 
         $this->room = !empty($this->room) ? $this->room : null; 
         $this->gmm_cautela = !empty($this->gmm_cautela) ? $this->gmm_cautela : null; 
@@ -34,6 +36,12 @@ class Material extends Model {
 
     public function update() {
         $this->validate();
+        $this->number_bmp = !empty($this->number_bmp) ? $this->number_bmp : null; 
+        $this->number_metallic = !empty($this->number_metallic) ? $this->number_metallic : null; 
+        $this->manufacturer_id = !empty($this->manufacturer_id) ? $this->manufacturer_id : null; 
+        $this->room = !empty($this->room) ? $this->room : null; 
+        $this->gmm_cautela = !empty($this->gmm_cautela) ? $this->gmm_cautela : null; 
+        $this->obs = !empty($this->obs) ? $this->obs : null; 
         $this->origin = mb_strtoupper($this->origin, 'UTF-8');
         return parent::update();
     }
@@ -60,7 +68,7 @@ class Material extends Model {
         . " ORDER BY ".  ($typeFilter == 'global' ? "materials.number_unit ASC" : "materials.{$typeFilter} ASC");
 
         // Monta o pedaço da query que LIMIT com o registro inicial($start) e o número de resgistro por página($perPage)
-        $limit = empty($page) ? "" : " LIMIT {$start}, {$perPage}";
+        $limit = !empty($filter) ? "" : " LIMIT {$start}, {$perPage}";
         // Monta a query de consulta anterior limitando o número de registro obtidos
         $sqlLimit = $sqlTotal . "{$limit}";
 

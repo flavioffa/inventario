@@ -55,7 +55,22 @@
                     <?= $errors['email'] ?>
                 </div>
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-3">
+                <label for="unit_id">Unidade</label>
+                <select id="unit_id" name="unit_id"
+                    class="form-control <?= $errors['unit_id'] ? 'is-invalid' : '' ?>">
+                    <option value="">Escolher</option>
+                    <?php foreach( $units as $unit ): ?>
+                        <option value="<?= $unit->id; ?>" <?=($unit_id == $unit->id)?'selected':''?>>
+                            <?= $unit->initials_unit; ?>
+                        </option>  
+                    <?php endforeach ?>
+                </select>
+                <div class="invalid-feedback">
+                    <?= $errors['type_id'] ?>
+                </div>
+            </div>
+            <div class="form-group col-md-3">
                 <label for="is_admin">Administrador?</label>
                 <input type="checkbox" id="is_admin" name="is_admin"
                     class="form-control <?= $errors['is_admin'] ? 'is-invalid' : '' ?>"

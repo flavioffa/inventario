@@ -11,17 +11,6 @@
     <form action="#" method="post">
         <input type="hidden" name="id" value="<?= $id ?>">
         <div class="form-row">
-            <div class="form-group col-md-12">
-                <label for="name_model">Descrição do Modelo</label>
-                <input type="text" id="name_model" name="name_model" placeholder="Informe os detalhes do modelo"
-                    class="form-control <?= $errors['name_model'] ? 'is-invalid' : '' ?>"
-                    value="<?= $name_model ?? '' ?>">
-                <div class="invalid-feedback">
-                    <?= $errors['name_model'] ?>
-                </div>
-            </div>
-        </div>
-        <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="type_id">Tipo do Modelo</label>
                 <select id="type_id" name="type_id"
@@ -35,6 +24,17 @@
                 </select>
                 <div class="invalid-feedback">
                     <?= $errors['type_id'] ?>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label for="name_model">Descrição do Modelo</label>
+                <input type="text" id="name_model" name="name_model" placeholder="Informe os detalhes do modelo"
+                    class="form-control <?= $errors['name_model'] ? 'is-invalid' : '' ?>"
+                    value="<?= $name_model ?? '' ?>">
+                <div class="invalid-feedback">
+                    <?= $errors['name_model'] ?>
                 </div>
             </div>
         </div>

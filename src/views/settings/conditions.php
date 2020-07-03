@@ -2,7 +2,7 @@
     <?php
         renderTitle(
             'Cadastro de Condição',
-            'Mantenha os dados dos Condição atualizados',
+            'Mantenha os dados das Condições atualizados',
             'icofont-star'
         );
 

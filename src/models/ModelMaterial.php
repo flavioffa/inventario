@@ -35,7 +35,7 @@ class ModelMaterial extends Model {
             . " ORDER BY types_materials.name_type ASC, models_materials.name_model ASC";
 
             // Monta o pedaço da query que LIMIT com o registro inicial($start) e o número de resgistro por página($perPage)
-            $limit = empty($page) ? "" : " LIMIT {$start}, {$perPage}";
+            $limit = !empty($filter) ? "" : " LIMIT {$start}, {$perPage}";
             // Monta a query de consulta anterior limitando o número de registro obtidos
             $sqlLimit = $sqlTotal . "{$limit}";
     

@@ -42,7 +42,7 @@
                             </a>
                         <?php else: ?>
                             <a class="btn btn-primary btn-sm" href="divisions.php?unit=<?= $unit->id ?><?= $parts ?><?= $scales ?>">
-                                Divisões
+                                Seções
                             </a>
                         <?php endif; ?>
                     </td>

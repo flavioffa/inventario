@@ -68,7 +68,7 @@
                     </a>
                     <a class="dropdown-item" href="units.php?divisions=true">
                         <i class="icofont-cube"></i>
-                        Divisões
+                        Seções
                     </a>
                     <a class="dropdown-item" href="units.php?divisions=true&parts=true">
                         <i class="icofont-cubes"></i>

@@ -1,6 +1,7 @@
 <?php
 session_start();
 requireValidSession(true);
+require_once(realpath(MODEL_PATH . '/Unit.php'));
 
 $exception = null;
 $userData = [];
@@ -12,6 +13,7 @@ $ranks = [
     'SO', '1S', '2S', '3S',
     'CB', 'TM', 'S1', 'T1', 'S2', 'T2'        
 ];
+$units = Unit::get();
 
 if(count($_POST) === 0 && isset($_GET['update'])) {
     $user = User::getOne(['id' => $_GET['update']]);
@@ -43,5 +45,6 @@ if(count($_POST) === 0 && isset($_GET['update'])) {
 
 loadTemplateView('users/save_user', $userData + [
     'exception' => $exception,
-    'ranks' => $ranks
+    'ranks' => $ranks,
+    'units' => $units
 ]);

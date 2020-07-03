@@ -11,6 +11,7 @@
     <div class="form_ajax" style="display: none;"></div>
     <form action="#" method="post" id="form-material">
         <input type="hidden" name="id" value="<?= $id; ?>">
+        <input type="hidden" name="qrcode" value="<?= $qrcode; ?>">
         <div class="form-row">
             <div class="form-group col-md-4">
                 <label for="number_unit">Etiqueta CIMAER</label>
@@ -105,7 +106,7 @@
         </div>
         <div class="form-row">
             <div class="form-group col-md-4">
-                <label for="fk_division_id">Divisão/Seção</label> 
+                <label for="fk_division_id">Seção</label> 
                 <select id="fk_division_id" name="fk_division_id"
                     class="form-control <?= $errors['fk_division_id'] ? 'is-invalid' : '' ?>">
                     <option value="">Escolher</option>

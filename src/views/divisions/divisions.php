@@ -1,7 +1,7 @@
 <main class="content">
     <?php
         renderTitle(
-            'Divisões',
+            'Seções',
             $msgTitle,
             'icofont-cube'
         );
@@ -10,19 +10,19 @@
     ?>
     <?php if(!$parts): ?>
         <a class="btn btn-lg btn-primary mb-3" href="save_division.php?unit=<?= $unit->id ?>">
-            Nova Divisão
+            Nova Seção
         </a>
     <?php endif; ?>
         <table class="table table-bordered table-striped table-hover">
         <thead class="thead-light">
-            <th>Nome da Divisão</th>
+            <th>Nome da Seção</th>
             <th>Sigla</th>
             <th>Ações</th>
         </thead>
         <tbody>
             <?php if(count($divisions) == 0): ?>
                 <tr>
-                    <td colspan="3">Nenhuma Divisão cadastrada.</td>
+                    <td colspan="3">Nenhuma Seção cadastrada.</td>
                 </tr>
             <?php endif; ?>
             <?php foreach($divisions as $division): ?>

@@ -23,7 +23,11 @@ if(count($_POST) === 0 && isset($_GET['update'])) {
         }
         $_POST = [];
     } catch(Exception $e) {
-        $exception = $e;
+        if(stripos($e->getMessage(), 'name_type')) {
+            addErrorMsg('Não é possível usar tipo já cadastrado.');
+        } else {    
+            $exception = $e;
+        }
     } finally {
         $typeData = $_POST;
     }

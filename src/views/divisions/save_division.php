@@ -1,8 +1,8 @@
 <main class="content">
     <?php
         renderTitle(
-            'Divisão',
-            'Crie e atualize a Divisão',
+            'Seção',
+            'Crie e atualize a Seção',
             'icofont-cube'
         );
 
@@ -14,7 +14,7 @@
         <div class="form-row">
             <div class="form-group col-md-8">
                 <label for="name_division">Nome</label>
-                <input type="text" id="name_division" name="name_division" placeholder="Informe o nome da divisão"
+                <input type="text" id="name_division" name="name_division" placeholder="Informe o nome da seção"
                     class="form-control <?= $errors['name_division'] ? 'is-invalid' : '' ?>"
                     value="<?= $name_division ?>">
                 <div class="invalid-feedback">
@@ -23,7 +23,7 @@
             </div>
             <div class="form-group col-md-4">
                 <label for="initials_division">Sigla</label>
-                <input type="text" id="initials_division" name="initials_division" placeholder="Informe a sigla da divisão"
+                <input type="text" id="initials_division" name="initials_division" placeholder="Informe a sigla da seção"
                     class="form-control <?= $errors['initials_division'] ? 'is-invalid' : '' ?>"
                     value="<?= $initials_division ?>">
                 <div class="invalid-feedback">
@@ -33,10 +33,10 @@
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="chief_division_id">Chefe</label>
+                <label for="chief_division_id">Oficial Responsável</label>
                 <select id="chief_division_id" name="chief_division_id"
                     class="form-control <?= $errors['chief_division_id'] ? 'is-invalid' : '' ?>">
-                    <option value="">Escolha o Chefe</option>
+                    <option value="">Escolher</option>
                     <?php foreach($users as $user): ?>
                         <option value="<?= $user->id; ?>"  <?=($chief_division_id == $user->id)?'selected':''?>>
                             <?= $user->rank; ?> <?= $user->name; ?>

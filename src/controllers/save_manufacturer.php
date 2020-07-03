@@ -23,7 +23,11 @@ if(count($_POST) === 0 && isset($_GET['update'])) {
         }
         $_POST = [];
     } catch(Exception $e) {
-        $exception = $e;
+        if(stripos($e->getMessage(), 'name_manufacturer')) {
+            addErrorMsg('Este Fabricante já é cadastrado.');
+        } else {    
+            $exception = $e;
+        }
     } finally {
         $manufacturerData = $_POST;
     }

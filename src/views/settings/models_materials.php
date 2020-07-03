@@ -67,6 +67,7 @@
     <?php endforeach?>
     </tbody>
 </table>
+<?php if(empty($filter)): ?>
 <nav aria-label="Navegação de página exemplo">
     <ul class="pagination justify-content-center">
         <li class="<?= $modelsMaterials['currentPage'] == 1 ? 'page-item disabled' : 'page-item'; ?>">
@@ -82,12 +83,13 @@
         </li>
     </ul>
 </nav>
+<?php endif; ?>
 </main>
 <script>
     // Insere na url o termo de busca e faz o reload da página para o mesmo ser lido pelo controller
     function insertFilterTermInUrl(){
         var filterTerm = document.getElementById("filter").value;
-        var html = 'models_materials.php?page=1&filter='+filterTerm;
+        var html = 'models_materials.php?filter='+filterTerm;
         window.location.href = html;
     }    
 </script>
