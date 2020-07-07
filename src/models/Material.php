@@ -49,13 +49,16 @@ class Material extends Model {
     public static function getMaterialsFullDetails($filter, $typeFilter, $page = null) {
         $pg = empty($page) ? 1 : $page;
         // Número de usuários por página
-        $perPage = 10;
+        $perPage = 8;
         // Cálcula o registro inicial para compor a query LIMIT
         $start = ($pg - 1) * $perPage;
         // Se o tipo de filtro estiver vazio ou nulo, seta como global
         $typeFilter = empty($typeFilter) ? 'global' : $typeFilter;
         // Monta a query para consultar todos usuários na $table que pertencem a $type e ordena pela antiguidade
-        $sqlTotal = "SELECT materials.*, types_materials.name_type, models_materials.name_model, manufacturers.name_manufacturer, parts.name_part, divisions.name_division, divisions.initials_division, status.name_status, status.color_status, conditions.name_condition, conditions.color_condition"
+        $sqlTotal = "SELECT materials.*, types_materials.name_type, models_materials.name_model,
+            manufacturers.name_manufacturer, parts.name_part, divisions.name_division,
+            divisions.initials_division, status.name_status, status.color_status, conditions.name_condition,
+            conditions.color_condition"
         . " FROM " . static::$tableName
         . " INNER JOIN types_materials ON materials.type_material_id = types_materials.id" 
         . " INNER JOIN models_materials ON materials.model_id = models_materials.id" 
@@ -94,6 +97,42 @@ class Material extends Model {
             'currentPage' => $pg,
             'total' => $total
         ]; 
+    }
+
+    public static function getMaterialsFullToReports($typeFilter = null, $subFilter, $table = null, $filter = null) {
+        // Se o tipo de filtro estiver vazio ou nulo, seta como global
+        // $typeFilter = empty($typeFilter) ? 'global' : $typeFilter;
+        // $sqlOptions = "SELECT DISTINCT {$typeFilter}_id FROM materials";
+        // Monta a query para consultar todos usuários na $table que pertencem a $type e ordena pela antiguidade
+        $sql = "SELECT materials.*, types_materials.name_type, models_materials.name_model, manufacturers.name_manufacturer, parts.name_part, divisions.name_division, divisions.initials_division, status.name_status, status.color_status, conditions.name_condition, conditions.color_condition"
+        . " FROM " . static::$tableName
+        . " INNER JOIN types_materials ON materials.type_material_id = types_materials.id" 
+        . " INNER JOIN models_materials ON materials.model_id = models_materials.id" 
+        . " LEFT JOIN manufacturers ON materials.manufacturer_id = manufacturers.id" 
+        . " LEFT JOIN parts ON materials.part_id = parts.id" 
+        . " INNER JOIN divisions ON materials.fk_division_id = divisions.id" 
+        . " INNER JOIN status ON materials.status_id = status.id" 
+        . " INNER JOIN conditions ON materials.condition_id = conditions.id" 
+        . " WHERE " . (!empty($typeFilter) ? "{$table}.{$typeFilter} = '{$subFilter}'" : "1=1")
+        . " ORDER BY name_model ASC, number_unit ASC";
+        // echo $sql;
+        // exit;
+        $result = Database::getResultFromQuery($sql);
+        
+        // Número total de usuários na $table que pertencem a $type
+        $total = mysqli_num_rows(Database::getResultFromQuery($sql));
+
+        $registries = [];
+        if($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                $registries[] = $row;
+            }
+        }
+        // var_dump($registries);
+        // exit;
+
+        // Retorna os materiais
+        return $registries;
     }
 
     private function validate() {

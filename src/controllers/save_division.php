@@ -3,7 +3,7 @@ session_start();
 requireValidSession(true);
 require_once(realpath(MODEL_PATH . '/Division.php'));
 
-$users = User::get();
+$users = User::get(['raw' => "1 = 1 ORDER BY rank DESC"]);
 $unit_id = $_GET['unit'];
 $divisions = Division::get(['division_unit_id' => $unit_id]);
 $exception = null;
@@ -17,17 +17,21 @@ if(count($_POST) === 0 && isset($_GET['update'])) {
         $dbDivision = new Division($_POST);
         if($dbDivision->id) {
             $dbDivision->update();
-            addSuccessMsg('Divisão alterada com sucesso!');
+            addSuccessMsg('Seção alterada com sucesso!');
             header("Location: divisions.php?unit={$unit_id}");
             exit();
         } else {
             $dbDivision->insert();
-            addSuccessMsg('Divisão cadastrada com sucesso!');
+            addSuccessMsg('Seção cadastrada com sucesso!');
             header("Location: divisions.php?unit={$unit_id}");
         }
         $_POST = [];
     } catch(Exception $e) {
-        $exception = $e;
+        if(stripos($e->getMessage(), 'division_unit_unique')) {
+            addErrorMsg('Já existe seção cadastrada com o mesmo nome.');
+        } else {
+            $exception = $e;
+        }
     } finally {
         $divisionData = $_POST;
     }

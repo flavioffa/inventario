@@ -58,7 +58,11 @@ if(count($_POST) === 0 && isset($_GET['update'])) {
         }
         $_POST = [];
     } catch(Exception $e) {
-        $exception = $e;
+        if(stripos($e->getMessage(), 'number_unit')) {
+            addErrorMsg('Um material já foi cadastrado com o mesmo número de etiqueta CIMAER.');
+        } else {
+            $exception = $e;
+        }
     } finally {
         $materialData = $_POST;
     }

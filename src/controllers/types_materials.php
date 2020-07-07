@@ -9,6 +9,7 @@ $search = filter_input(INPUT_GET, 'searchTerm');
 if(isset($_GET['delete'])) {
     try {
         TypeMaterial::deleteById($_GET['delete']);
+        $search = null;
         addSuccessMsg('Tipo excluído com sucesso.');
     } catch(Exception $e) {
         if(stripos($e->getMessage(), 'FOREIGN KEY')) {

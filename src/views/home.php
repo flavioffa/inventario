@@ -8,52 +8,52 @@
     ?>
     <div class="row">
        <div class="col-md-3">
-            <div class="small-box bg-success">
+            <div class="d-flex small-box bg-success text-white justify-content-around">
                 <div class="inner">
-                    <h3>120</h3>
-                    <p>Em Uso</p>
+                    <h3><?= $inUse; ?></h3>
+                    Em Uso
                 </div>
-                <div class="icon">
-                    <i class="far fa-fw fa-eye"></i>
+                <div class="icon align-items-center mt-2">
+                    <i class="icofont-upload-alt icofont-3x"></i>
                 </div>
             </div>
        </div> 
        <div class="col-md-3">
-            <div class="small-box bg-warning">
+            <div class="d-flex small-box bg-warning text-white justify-content-around">
                 <div class="inner">
-                    <h3>120</h3>
-                    <p>Em Estoque</p>
+                    <h3><?= $inStock; ?></h3>
+                    Em Estoque
                 </div>
-                <div class="icon">
-                    <i class="far fa-fw fa-eye"></i>
+                <div class="icon align-items-center mt-2">
+                    <i class="icofont-download icofont-3x"></i>
                 </div>
             </div>
        </div> 
        <div class="col-md-3">
-            <div class="small-box bg-danger">
+            <div class="d-flex small-box bg-danger text-white justify-content-around">
                 <div class="inner">
-                    <h3>33</h3>
-                    <p>Quebrado</p>
+                    <h3><?= $broke; ?></h3>
+                    Quebrado
                 </div>
-                <div class="icon">
-                    <i class="far fa-fw fa-eye"></i>
+                <div class="icon align-items-center mt-2">
+                    <i class="icofont-broken icofont-3x"></i>
                 </div>
             </div>
        </div> 
        <div class="col-md-3">
-            <div class="small-box bg-info">
+            <div class="d-flex small-box bg-info text-white justify-content-around">
                 <div class="inner">
-                    <h3>120</h3>
-                    <p>Total</p>
+                    <h3><?= $inUse + $inStock + $broke; ?></h3>
+                    Total
                 </div>
-                <div class="icon">
-                    <i class="far fa-fw fa-eye"></i>
+                <div class="icon align-items-center mt-2">
+                    <i class="icofont-globe icofont-3x"></i>
                 </div>
             </div>
        </div> 
     </div>
 
-    <div class="row">
+    <div class="row mt-2">
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">

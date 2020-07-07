@@ -24,6 +24,27 @@ class Division extends Model {
         return parent::update();
     }
 
+    public static function getFullDetails($filter = '', $unit) {
+        // Monta a query para consultar todos usuários na $table que pertencem a $type e ordena pela antiguidade
+        $sql = "SELECT divisions.*, users.name, users.rank"
+        . " FROM " . static::$tableName
+        . " INNER JOIN users ON divisions.chief_division_id = users.id"  
+        . " WHERE divisions.division_unit_id = {$unit} " . ($filter != '' ? " AND (divisions.name_division LIKE '%{$filter}%' OR users.name LIKE '%{$filter}%' OR divisions.initials_division LIKE '%{$filter}%')" : '')
+        . " ORDER BY divisions.name_division ASC";
+
+        $result = Database::getResultFromQuery($sql);
+
+        $registries = [];
+        if($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                $registries[$row['id']] = new Division($row);
+            }
+        }
+
+        // Retorna os materiais, o número de páginas para exibir todos os registros e a página atual
+        return $registries;        
+    }
+
     private function validate() {
         $errors = [];
 

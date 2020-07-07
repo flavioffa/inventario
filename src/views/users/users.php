@@ -9,7 +9,27 @@
         include(TEMPLATE_PATH . "/messages.php");
     ?>
 
-    <a class="btn btn-lg btn-primary mb-2" href="save_user.php">Novo Usuário</a>
+    <div class="container" id="search">
+        <div class="row justify-content-between">
+            <div class="col-6">
+                <a class="btn btn-lg btn-primary"
+                    href="save_user.php">Novo Usuário</a>
+            </div>
+            <div class="col-6 mt-2">
+                <form method="GET" action="#">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-sm">
+                            <i class="icofont-search-2"></i>
+                            </span>
+                        </div>
+                        <input type="text" class="form-control" name="searchTerm" value="<?= $search ?>"
+                            placeholder="Pesquisar" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    </div>
+                </form>
+            </div>    
+        </div>
+    </div>
 
     <table class="table table-bordered table-striped table-hover">
         <thead class="thead-light">

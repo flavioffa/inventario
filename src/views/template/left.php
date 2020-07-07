@@ -15,11 +15,17 @@
             </li> -->
             <!-- ?php if($user->is_admin): ?> -->
             <li class="nav-item">
-                <a href="materials.php">
-                <i class="icofont-box mr-2"></i>
+                <a href="materials.php?page=1">
+                    <i class="icofont-box mr-2"></i>
                     Materiais
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="reports.php">
+                    <i class="icofont-chart-histogram mr-2"></i>
+                    Relatórios
+                </a>
+            </li>  
             <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" data-target="#menuMaterials">
                     <i class="icofont-ui-settings mr-2"></i>
