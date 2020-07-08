@@ -26,8 +26,8 @@
             </div>
             <?php if($subFilters || $subFilter): ?>
                 <div class="col-3">
-                    <!-- <form action="" method="post" id="form-subFilter"> -->
-                        <select id="subFilter" name="<?= $typeFilter; ?>" 
+                    <!-- <form action="" method="get" id="form-subFilter"> -->
+                        <select id="subFilter" name="subFilter" onchange="insertFilterTypeInUrl()"
                             class="form-control mt-2">
                             <option value="">Escolha <?= $nameType; ?></option>
                             <?php foreach( $subFilters as $key => $sub ): ?>
@@ -57,8 +57,9 @@
                 </div>
             </div>
             <div class="col-1">
-                <form action="#" method="post">
-                    <input type="hidden" name="tableContent" id="tableContent" value="">
+                <form action="printReport.php" method="post">
+                    <input type="hidden" name="typePrint" id="typePrint" value="<?=$typeFilter ?? '';?>">
+                    <input type="hidden" name="subFilterPrint" id="subFilterPrint" value="<?=$subFilter ?? '';?>">
                     <button type="submit" class="btn btn-outline-secondary mt-1" id="print-report" onclick="printReport()">
                         <i class="icofont-print icofont-2x"></i>
                     </button>
@@ -82,9 +83,33 @@
             </tr>
         </thead>
         <tbody id="bodyTableReport">
-
+        <?php if(count($materials) == 0): ?>
+            <tr>
+                <td colspan="9">Escolha uma opção</td>
+            </tr>
+        <?php endif; ?>
+        <?php foreach($materials as $material): ?>
+            <?php if(!$material['count']): ?>
+                <tr class="<?= $material['color_condition'] == 'dark' ? '' : "text-{$material['color_condition']}"; ?>">
+                    <td><?= $material['number_unit']; ?></td>
+                    <td><?= $material['number_metallic'] ?? ''; ?></td>
+                    <td><?= $material['number_bmp'] ?? ''; ?></td>
+                    <td><?= $material['name_model']; ?></td>
+                    <td><?= $material['initials_division']; ?></td>
+                    <td><?= $material['name_part']; ?></td>
+                    <td><?= $material['name_status']; ?></td>
+                    <td><?= $material['name_condition']; ?></td>
+                    <td class="text-center"><?= $material['amount']; ?></td>
+                </tr>
+            <?php else: ?>
+                <tr>
+                    <td class="text-right font-weight-bold" colspan="8">Total</td>
+                    <td class="text-center font-weight-bold"><?= $material['count']; ?></td>
+                </tr>
+            <?php endif; ?>
+        <?php endforeach; ?>
         </tbody>
-</table>
+    </table>
 </main>
 <script>
     function printReport() {
@@ -93,9 +118,13 @@
     }
     // Insere na url o termo de busca e faz o reload da página para o mesmo ser lido pelo controller
     function insertFilterTypeInUrl(){
-        var filterTerm = document.getElementById("filter").value;
-        var typeFilter = document.getElementById("filter").name;
-        var html = 'reports.php?filter='+filterTerm+'&type='+typeFilter;
+        var typeFilter = document.getElementById("typeFilter").value;
+        var subFilter = document.getElementById("subFilter").value;
+        // document.getElementById("typePrint").value = typeFilter;
+        // document.getElementById("subFilterPrint").value = subFilter;
+        // console.log(document.getElementById("subFilterPrint").value);
+        // var filterTerm = document.getElementById("subFilter").value;
+        var html = 'reports.php?typeFilter='+typeFilter+'&subFilter='+subFilter;
         window.location.href = html;
     }
 

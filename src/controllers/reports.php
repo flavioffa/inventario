@@ -3,68 +3,72 @@ session_start();
 requireValidSession();
 require_once(realpath(MODEL_PATH . '/Material.php'));
 
-// reference the Dompdf namespace
-use Dompdf\Dompdf;
-
-// include autoloader
-require_once 'dompdf/autoload.inc.php';
-
 $reports = ['name_division'=>'Seção', 'name_part'=>'Setor', 'name_type'=>'Tipo', 'name_model'=>'Modelo','name_manufacturer'=> 'Fabricante', 'name_status'=>'Status', 'name_condition'=>'Condição'];
 $typeFilter = filter_input(INPUT_GET, 'typeFilter') ? filter_input(INPUT_GET, 'typeFilter') : '';
+$subFilter = filter_input(INPUT_GET, 'subFilter') ? filter_input(INPUT_GET, 'subFilter') : '';
 // $filter = true;
-$materialsData = [];
-$materialsData['nameType'] = $reports[$typeFilter];
-$materialsData['typeFilter'] = $typeFilter;
 
-if(count($_POST) === 0 && isset($_GET['typeFilter'])) {
+
+if(count($_POST) === 0 && isset($typeFilter)) {
     $materials = Material::getMaterialsFullToReports(null, $subFilter);
     $selectSubFilter = array_column($materials, $typeFilter);
     $selectSubFilter = array_unique($selectSubFilter);
-    // $unit = Unit::getOne(['id' => $_GET['update']]);
-    $materialsData['typeFilters'] = $selectSubFilter;
+}
+if(count($_POST) === 0 && !empty($subFilter)) {
+    switch($typeFilter) {
+        CASE 'name_division':
+            $materials = Material::getMaterialsFullToReports($typeFilter, $subFilter, 'divisions');
+            break;
+        CASE 'name_part':
+            $materials = Material::getMaterialsFullToReports($typeFilter, $subFilter, 'parts');
+            break;
+        CASE 'name_type':
+            $materials = Material::getMaterialsFullToReports($typeFilter, $subFilter, 'types_materials');
+            break;
+        CASE 'name_model':
+            $materials = Material::getMaterialsFullToReports($typeFilter, $subFilter, 'models_materials');
+            break;
+        CASE 'name_manufacturer':
+            $materials = Material::getMaterialsFullToReports($typeFilter, $subFilter, 'manufacturers');
+            break;
+        CASE 'name_status':
+            $materials = Material::getMaterialsFullToReports($typeFilter, $subFilter, 'status');
+            break;
+        CASE 'name_condition':
+            $materials = Material::getMaterialsFullToReports($typeFilter, $subFilter, 'conditions');
+            break;
+    }
 
-    // print_r($selectSubFilter);
-    // exit;
-} elseif(count($_POST) === 0 && isset($_GET['typeFilter'])) {
-    // <table class="table table-sm" id="tableReport">
+    $result = [];
 
-    // $table = filter_input(INPUT_POST, 'tableContent');
+    $total = count($materials);
 
-
-    // $materials = Material::getMaterialsFullToReports($filter, $typeFilter, $_POST['subFilter']);
-    // try {
-        // $dbUnit = new Unit($_POST);
-        // if($dbUnit->id) {
-        //     $dbUnit->update();
-        //     addSuccessMsg('Unidade alterada com sucesso!');
-        //     header('Location: units.php');
-        //     exit();
-        // } else {
-        //     $dbUnit->insert();
-        //     addSuccessMsg('Unidade cadastrada com sucesso!');
-        //     header('Location: units.php');
-        // }
-    //     $_POST = [];
-    // } catch(Exception $e) {
-        // $exception = $e;
-    // } finally {
-        $materialsData['subFilter'] = $_POST['subFilter'];
-    // }
+    $tableOrder = [];
+    $count = 0;
+    $ln = 0;
+    $rowPrevious = '';
+    if($materials) {
+        foreach($materials as $row) {
+            if($rowPrevious != $row['name_model'] && $ln != 0) {
+                $tableOrder[] = ['count' => $count];
+                $count = 1;
+            } else {
+                $count += $row['amount'];
+            }
+            $tableOrder[] = $row;
+            $rowPrevious = $row['name_model'];
+            $ln++;
+            if($ln == $total) {
+                $tableOrder[] = ['count' => $count];
+            }
+        }
+    }
 }
 
-// function getMaterials()
-
-
-
-// $divisions = array_column($materials['materials'], $typeFilter);
-// $divisions = array_unique($divisions);
-// print_r($materialsData);
-// exit;
-loadTemplateView('reports/reports', $materialsData + [
+loadTemplateView('reports/reports',[
     'reports' => $reports,
-    'materials' => $materials,
-    'typeFilter' => $typeFilter?$typeFilter:$materialsData['typeFilter'],
-    'subFilters' => $materialsData['typeFilters'],
-    'subFilter' => $materialsData['subFilter'],
-    'nameType' => $materialsData['nameType']
+    'materials' => $tableOrder,
+    'typeFilter' => $typeFilter,
+    'subFilters' => $selectSubFilter,
+    'subFilter' => $subFilter
 ]);

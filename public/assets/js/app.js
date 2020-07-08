@@ -65,54 +65,54 @@ $(function(){
         }
     });
 
-    $('#subFilter').change(function(){
-        if( $(this).val() ) {
-            // $('#part_id').hide();
-            // $('.loading-part').show();
-            var subFilter = $(this).val();
-            var name = $('#typeFilter').val();
-            $.ajax({
-                type:'POST',
-                url:'ajax/subFilter.php',
-                data: 'filter='+name+'&subFilter='+subFilter+'&action=sub-filter',
-                dataType:'json',
-                success:function(json) {
-                    $('#bodyTableReport').empty();
-                    for(var i=0; json.length>i;i++){
-                        if(!json[i].count) {
-                            $('#bodyTableReport').append(`
-                            <tr>
-                                <td>${json[i].number_unit}</td>
-                                <td>${json[i].number_metallic ?? ''}</td>
-                                <td>${json[i].number_bmp ?? ''}</td>
-                                <td>${json[i].name_model}</td>
-                                <td>${json[i].initials_division}</td>
-                                <td>${json[i].name_part}</td>
-                                <td>${json[i].name_status}</td>
-                                <td>${json[i].name_condition}</td>
-                                <td class="align-middle text-center">${json[i].amount}</td>
-                            </tr>
-                            `);
-                            } else {
-                                $('#bodyTableReport').append(`
-                                    <tr>
-                                        <td class="text-right font-weight-bold" colspan="8">Total</td>
-                                        <td class="text-center font-weight-bold">${json[i].count}</td>
-                                    </tr>
-                                `);
-                        }
-                    };
-                    var tableReport = document.getElementById("tableReport").innerHTML; 
-                    $('#tableContent').val(tableReport);
-                },
-                error: function () {
-                    $('#subFilter').html('<option value="">Escolher</option>');
-                }
-            });  
-        } else {
-            $('#subFilter').html('<option value="">Escolher</option>');
-        }
-    });
+    // $('#subFilter').change(function(){
+    //     if( $(this).val() ) {
+    //         // $('#part_id').hide();
+    //         // $('.loading-part').show();
+    //         var subFilter = $(this).val();
+    //         var name = $('#typeFilter').val();
+    //         $.ajax({
+    //             type:'POST',
+    //             url:'ajax/subFilter.php',
+    //             data: 'filter='+name+'&subFilter='+subFilter+'&action=sub-filter',
+    //             dataType:'json',
+    //             success:function(json) {
+    //                 $('#bodyTableReport').empty();
+    //                 for(var i=0; json.length>i;i++){
+    //                     if(!json[i].count) {
+    //                         $('#bodyTableReport').append(`
+    //                         <tr>
+    //                             <td>${json[i].number_unit}</td>
+    //                             <td>${json[i].number_metallic ?? ''}</td>
+    //                             <td>${json[i].number_bmp ?? ''}</td>
+    //                             <td>${json[i].name_model}</td>
+    //                             <td>${json[i].initials_division}</td>
+    //                             <td>${json[i].name_part}</td>
+    //                             <td>${json[i].name_status}</td>
+    //                             <td>${json[i].name_condition}</td>
+    //                             <td class="align-middle text-center">${json[i].amount}</td>
+    //                         </tr>
+    //                         `);
+    //                         } else {
+    //                             $('#bodyTableReport').append(`
+    //                                 <tr>
+    //                                     <td class="text-right font-weight-bold" colspan="8">Total</td>
+    //                                     <td class="text-center font-weight-bold">${json[i].count}</td>
+    //                                 </tr>
+    //                             `);
+    //                     }
+    //                 };
+    //                 var tableReport = document.getElementById("tableReport").innerHTML; 
+    //                 $('#tableContent').val(tableReport);
+    //             },
+    //             error: function () {
+    //                 $('#subFilter').html('<option value="">Escolher</option>');
+    //             }
+    //         });  
+    //     } else {
+    //         $('#subFilter').html('<option value="">Escolher</option>');
+    //     }
+    // });
 
     // $(function () {
         // function load(action) {

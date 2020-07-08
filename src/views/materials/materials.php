@@ -75,7 +75,9 @@
         </tr>
     <?php endif; ?>
     <?php foreach($materials['materials'] as $material): ?>
-        <tr class="<?= $material->color_status == 'white' ? '' : ($material->color_status == 'dark' ? 'bg-secondary text-white' : "table-{$material->color_status}"); ?> <?= $material->color_condition == 'dark' ? '' : "text-{$material->color_condition}"; ?>
+        <tr class="
+            <?= $material->color_status == 'white' ? '' : 
+            ($material->color_status == 'dark' ? 'bg-secondary text-white' : "table-{$material->color_status}"); ?>
         ">
             <td class="align-middle text-center"><?= $material->number_unit; ?></td>
             <td class="align-middle"><?= $material->number_metallic ?></td>
@@ -108,7 +110,7 @@
                 </a> -->
             </td>
         </tr>
-    <?php endforeach?>
+    <?php endforeach; ?>
     </tbody>
 </table>
 <?php if(empty($filter)): ?>

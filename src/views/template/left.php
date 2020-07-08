@@ -27,6 +27,12 @@
                 </a>
             </li>  
             <li class="nav-item">
+                <a href="documents.php">
+                <i class="icofont-document-folder mr-2"></i>
+                    Documentos
+                </a>
+            </li>  
+            <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" data-target="#menuMaterials">
                     <i class="icofont-ui-settings mr-2"></i>
                     Configurações

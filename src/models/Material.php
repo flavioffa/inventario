@@ -24,24 +24,24 @@ class Material extends Model {
     public function insert() {
         $this->validate();
         $this->id = null;
-        $this->number_bmp = !empty($this->number_bmp) ? $this->number_bmp : null; 
-        $this->number_metallic = !empty($this->number_metallic) ? $this->number_metallic : null; 
-        $this->manufacturer_id = !empty($this->manufacturer_id) ? $this->manufacturer_id : null; 
-        $this->room = !empty($this->room) ? $this->room : null; 
-        $this->gmm_cautela = !empty($this->gmm_cautela) ? $this->gmm_cautela : null; 
-        $this->obs = !empty($this->obs) ? $this->obs : null; 
+        $this->number_bmp = $this->number_bmp ? $this->number_bmp: null; 
+        $this->number_metallic = $this->number_metallic ? $this->number_metallic : null; 
+        $this->manufacturer_id = $this->manufacturer_id ? $this->manufacturer_id : null; 
+        $this->room = $this->room ?? null; 
+        $this->gmm_cautela = $this->gmm_cautela ?? null; 
+        $this->obs = $this->obs ?? null; 
         $this->origin = mb_strtoupper($this->origin, 'UTF-8');
         return parent::insert();
     }
 
     public function update() {
         $this->validate();
-        $this->number_bmp = !empty($this->number_bmp) ? $this->number_bmp : null; 
-        $this->number_metallic = !empty($this->number_metallic) ? $this->number_metallic : null; 
-        $this->manufacturer_id = !empty($this->manufacturer_id) ? $this->manufacturer_id : null; 
-        $this->room = !empty($this->room) ? $this->room : null; 
-        $this->gmm_cautela = !empty($this->gmm_cautela) ? $this->gmm_cautela : null; 
-        $this->obs = !empty($this->obs) ? $this->obs : null; 
+        $this->number_bmp = $this->number_bmp ? $this->number_bmp: null; 
+        $this->number_metallic = $this->number_metallic ? $this->number_metallic : null; 
+        $this->manufacturer_id = $this->manufacturer_id ? $this->manufacturer_id : null; 
+        $this->room = $this->room ?? null; 
+        $this->gmm_cautela = $this->gmm_cautela ?? null; 
+        $this->obs = $this->obs ?? null; 
         $this->origin = mb_strtoupper($this->origin, 'UTF-8');
         return parent::update();
     }
@@ -131,6 +131,43 @@ class Material extends Model {
         // var_dump($registries);
         // exit;
 
+        // Retorna os materiais
+        return $registries;
+    }
+
+    public static function countTotalMaterialsByDivisions() {
+        $sql = 'SELECT materials.fk_division_id, divisions.initials_division, count(materials.amount) AS qtd
+            FROM materials 
+            INNER JOIN divisions ON materials.fk_division_id = divisions.id 
+            GROUP BY fk_division_id';
+
+        $result = Database::getResultFromQuery($sql);
+
+        $registries = [];
+        if($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                $registries[] = $row;
+            }
+        }
+        // Retorna os materiais
+        return $registries;
+    }
+
+    public static function countTotalMaterialsByStatus() {
+        $sql = 'SELECT materials.status_id, status.name_status, status.color_status, count(materials.amount) AS qtd
+            FROM materials 
+            INNER JOIN status ON materials.status_id = status.id 
+            GROUP BY status_id';
+
+        $result = Database::getResultFromQuery($sql);
+
+        $registries = [];
+        if($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                $registries[] = $row;
+            }
+        }
+        
         // Retorna os materiais
         return $registries;
     }
