@@ -94,7 +94,7 @@
             <td class="align-middle"><?= $material->name_condition ?></td>
             <td class="align-middle"><?= $material->gmm_cautela ?></td>
             <td class="align-middle"><?= $material->obs ?></td>
-            <td class="align-middle">
+            <td class="align-middle" style="width: 100px">
                 <a href="save_material.php?update=<?= $material->id ?>" 
                     class="btn btn-warning rounded-circle btn-sm mr-2">
                     <i class="icofont-edit"></i>

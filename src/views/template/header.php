@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="assets/css/icofont.min.css">
     <link rel="stylesheet" href="assets/css/comum.css">
     <link rel="stylesheet" href="assets/css/template.css">
-    <script src="https://unpkg.com/imask"></script>    
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
+    <script src="https://unpkg.com/imask"></script> 
     <title>Inventário</title>
 </head>
 <body>

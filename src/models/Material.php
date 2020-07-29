@@ -49,7 +49,7 @@ class Material extends Model {
     public static function getMaterialsFullDetails($filter, $typeFilter, $page = null) {
         $pg = empty($page) ? 1 : $page;
         // Número de usuários por página
-        $perPage = 8;
+        $perPage = 9;
         // Cálcula o registro inicial para compor a query LIMIT
         $start = ($pg - 1) * $perPage;
         // Se o tipo de filtro estiver vazio ou nulo, seta como global

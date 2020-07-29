@@ -37,7 +37,7 @@
         <?php endif; ?>
         <?php foreach($materials as $material): ?>
             <?php if(!$material['count']): ?>
-                <tr>
+                <tr class="<?= $material['color_condition'] == 'dark' ? '' : "text-{$material['color_condition']}"; ?>">
                     <td><?= $material['number_unit']; ?></td>
                     <td><?= $material['number_metallic'] ?? ''; ?></td>
                     <td><?= $material['number_bmp'] ?? ''; ?></td>
