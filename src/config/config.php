@@ -2,7 +2,7 @@
 // Configuração Local
 date_default_timezone_set('America/Sao_Paulo');
 setlocale(LC_ALL, 'pt_BR','PT_BR.iso-8859-1', 'PT_BR.utf-8', 'portuguese');
-
+set_time_limit(60);
 // Exibe todos os erros PHP (see changelog)
 // ini_set('display_errors',1);
 // ini_set('display_startup_erros',1);
